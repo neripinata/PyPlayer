@@ -133,3 +133,5 @@ dmypy.json
 
 
 getinfo.py
+output/
+pretrained_models/
