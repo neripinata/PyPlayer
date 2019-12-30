@@ -15,5 +15,3 @@ try:
     lyrics.GetLyrics(separador.ExtractVoice(converter.SongAlreadyRegistered(extractor.GetInfo())))
 except:
     lyrics.GetLyrics(separador.ExtractVoice(converter.SongAlreadyRegisteredNoInfo()))
-    
-    
