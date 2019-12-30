@@ -136,3 +136,4 @@ getinfo.py
 output/
 pretrained_models/
 .vscode/
+delete.py

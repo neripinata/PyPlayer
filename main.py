@@ -6,12 +6,10 @@ import lyrics
 
 
 converter.Mp4ToMp3(downloader.Run(0,False))
-
-#Extrae la informacion de la cancion, si encuentra resultados,
-#cambia el nombre del archivo a NombreArtista.mp3, si no encuentra resultados lo que
-#hara es renombrar el archivo a como el usuario haya puesto la busqueda pero eliminando los
-#espacios, despues extaera la voz y el resto de instrumentos
+info = extractor.GetInfo()
+#real_lyrics = info[2]
 try:
-    lyrics.GetLyrics(separador.ExtractVoice(converter.SongAlreadyRegistered(extractor.GetInfo())))
+    detected_lyrics = lyrics.GetLyrics(separador.ExtractVoice(converter.SongAlreadyRegistered(info)))
 except:
-    lyrics.GetLyrics(separador.ExtractVoice(converter.SongAlreadyRegisteredNoInfo()))
+    detected_lyrics = lyrics.GetLyrics(separador.ExtractVoice(converter.SongAlreadyRegisteredNoInfo()))
+

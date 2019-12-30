@@ -68,6 +68,8 @@ from bs4 import BeautifulSoup
 
 def Extraer_from_letras(url):
     #to look in letras.com
+    letra = ""
+
     response = urllib.request.urlopen(url)
     webContent = response.read().decode()
 
@@ -77,14 +79,19 @@ def Extraer_from_letras(url):
 
     for x in soup.find_all('h1'):
         nameSong = x.text
-        
+            
 
     for x in soup.find_all('h2'):
         Artist = x.text
         break
 
+    for x in soup.find_all('p'):
+        letra += x.text
+
+    letra = letra.replace(" Música comienza con letras © 2003 - 2019, 2.7 millones de canciones  Hecho con amor en Belo Horizonte - Brasil Asociados:Quiero recibir notificaciones de artistas destacados y noticias.", "")
+
     Artist = Artist.strip()
-    info = [nameSong, Artist]
+    info = [nameSong, Artist, letra]
 
     return info
 

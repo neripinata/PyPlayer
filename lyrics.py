@@ -11,6 +11,9 @@ def GetLyrics(song):
 
 
     source = "output/{}/vocals.wav".format(song)
+    source_to_doc = "output/{}/".format(song)
+
+    f= open("output/{}/{}.txt".format(song, song),"w+")
 
     song = sr.AudioFile(source)
 
@@ -25,12 +28,13 @@ def GetLyrics(song):
         try:
             with song as source:
                 audio = r.record(source, duration=5, offset=i)
+                f.write(str(i) + str(r.recognize_google(audio)) + "\n")
                 print(r.recognize_google(audio))
         except:
             print("Audio is not recognized")
         i += 5
 
-
+    f.close()
 
 # try:
 #     with song as source:

@@ -17,11 +17,6 @@ def SongAlreadyRegistered(info):
     for x in files:
         if x.endswith(".mp3"):
             ##x_clean is x but without spaces
-            # x_clean = x.replace(' ', '')
-            # print(x_clean)
-            # os.rename("songs/" + x,'songs/checked/' + x_clean)
- 
-            #print(info[0])
 
             x_clean = str(info[0]) + str(info[1]) + ".mp3"
             x_clean = x_clean.replace(' ', '')

@@ -13,13 +13,12 @@ def GetInfo():
             query = x.rstrip(".mp3")
             print(query)
             try:
-                for j in search(query, tld="co.in", num=10, start=1, stop=15, pause=2):
+                for j in search(query, tld="co.in", num=20, start=1, stop=20, pause=2):
                     if "www.letras.com" in j:
                         try:
                             info = look.Extraer_from_letras(j)
                             print(info)
                             return info
-
                         except:
                             print("Error connection")
                     elif "www.lyrics.com" in j:
