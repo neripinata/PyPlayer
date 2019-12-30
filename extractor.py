@@ -18,6 +18,7 @@ def GetInfo():
                         try:
                             info = look.Extraer_from_letras(j)
                             print(info)
+                            return info
 
                         except:
                             print("Error connection")
@@ -25,6 +26,7 @@ def GetInfo():
                         try:
                             info = look.Extraer_from_lyrics(j)
                             print(info)
+                            return info
 
                         except:
                             print("Error connection")
@@ -39,6 +41,7 @@ def GetInfo():
                             try:
                                 info = look.Extraer_from_letras(link.related[i].url)
                                 print(info)
+                                return info
                             except:
                                 print ("Error connection")
                     except:

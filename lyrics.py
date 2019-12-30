@@ -1,39 +1,51 @@
 import speech_recognition as sr
 from os import path
 from pydub import AudioSegment
-
-src = "songs/checked/Beach House MYTH.mp3"
-dst = "songs/checked/Beach House MYTH.wav"
-
-sound = mp4_version = AudioSegment.from_file(src)
-sound.export(dst, format="wav")
-
-r = sr.Recognizer()
-
-song = sr.AudioFile("output/test4/vocals.wav")
-
-try:
-    with song as source:
-        audio = r.record(source, duration=20, offset=60)
-        r.recognize_google(audio)
-except:
-    print("tried 1 failed")
+import librosa
+import math
 
 
-try:
-    with song as source:
-        audio = r.record(source, duration=20, offset=80)
-        r.recognize_google(audio)
-except:
-    print("tried 2 failed")
+def GetLyrics(song):
+    song = song
+    r = sr.Recognizer()
 
 
-try:
-    with song as source:
-        audio = r.record(source, duration=20, offset=100)
-        r.recognize_google(audio)
-except:
-    print("tried 3 failed")
+    source = "output/{}/vocals.wav".format(song)
+
+    song = sr.AudioFile(source)
+
+    duration = librosa.get_duration(filename=source)
+    duration = math.floor(duration)
+    tries = int(duration)
+    print(tries)
+
+    i = 0
+
+    while i < tries:
+        try:
+            with song as source:
+                audio = r.record(source, duration=5, offset=i)
+                print(r.recognize_google(audio))
+        except:
+            print("Audio is not recognized")
+        i += 5
+
+
+
+# try:
+#     with song as source:
+#         audio = r.record(source, duration=5, offset=10)
+#         print(r.recognize_google(audio))
+# except:
+#     print("tried 1 failed")
+
+
+# try:
+#     with song as source:
+#         audio = r.record(source)
+#         r.recognize_google(audio)
+# except:
+#     print("tried 4 failed")
 
 
 
