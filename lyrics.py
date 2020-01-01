@@ -24,15 +24,43 @@ def GetLyrics(song):
 
     i = 0
 
+    lang = "en-US"
+
     while i < tries:
-        try:
-            with song as source:
-                audio = r.record(source, duration=5, offset=i)
-                f.write(str(i) + str(r.recognize_google(audio)) + "\n")
-                print(r.recognize_google(audio))
-        except:
-            print("Audio is not recognized")
-        i += 5
+        with song as source:
+            r.adjust_for_ambient_noise(source)            
+            try:
+                audio = r.record(source, duration=1, offset=i)
+                f.write(str(i) + str(r.recognize_google(audio, language=lang)) + "\n")
+                #print(r.recognize_google(audio, language=lang))
+                i += 1
+            except:
+                try:
+                    print("Try 1 - Unrecognize audio at " + str(i))
+                    audio = r.record(source, duration=2, offset=i)
+                    f.write(str(i) + str(r.recognize_google(audio, language=lang)) + "\n")
+                    #print(r.recognize_google(audio, language=lang))
+                    i += 2
+                except:
+                    try:
+                        print("Try 2 - Unrecognize audio at " + str(i))
+                        audio = r.record(source, duration=3, offset=i)
+                        f.write(str(i) + str(r.recognize_google(audio, language=lang)) + "\n")
+                        #print(r.recognize_google(audio, language=lang))
+                        i += 3
+                    except:
+                        try:
+                            print("Try 3 - Unrecognize audio at " + str(i))
+                            audio = r.record(source, duration=4, offset=i)
+                            f.write(str(i) + str(r.recognize_google(audio, language=lang)) + "\n")
+                            #print(r.recognize_google(audio, language=lang))
+                            i += 4
+                        except:
+                            print("Try 4 - Unrecognize audio at " + str(i))
+                            i += 4
+
+            print(i)
+
 
     f.close()
 

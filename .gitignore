@@ -137,3 +137,5 @@ output/
 pretrained_models/
 .vscode/
 delete.py
+IM2.png
+img.png
